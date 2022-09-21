@@ -61,7 +61,7 @@ const ContactList = ({contact, setContact, form, setForm, formStatus, setFormSta
 
             <div>
                 <div className='contactList'>
-                    { contact.filter(c => (c.name.toUpperCase().includes(search.toUpperCase())) || (c.family.toUpperCase().includes(search.toUpperCase())) ).map(c => (
+                    { (searchEnable? contact:item).filter(c => (c.name.toUpperCase().includes(search.toUpperCase())) || (c.family.toUpperCase().includes(search.toUpperCase())) ).map(c => (
                         <div className="contactItem">
                             <div className='contactContainer'>
                                 <div className='contactItem_image'>
