@@ -3,7 +3,13 @@ import { useState } from "react";
 import { FaHeart, FaRegHeart, FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 import { BsGrid } from "react-icons/bs";
 
-const Contact = ({contact, setContact, form, setForm, formStatus, setFormStatus, lastId, setLastId, contactEnable, setContactEnable}) => {
+const filter = [
+    {id: 1, type: 'allContact'},
+    {id: 2, type: 'favContact'},
+    {id: 3, type: 'unFavContact'}
+]
+
+const Contact = ({contact, setContact, form, setForm, formStatus, setFormStatus, lastId, setLastId, contactEnable, setContactEnable, search}) => {
 
     const handleDelete = id => {
         setContact(contact.filter(c => c.id !== id))
@@ -30,11 +36,11 @@ const Contact = ({contact, setContact, form, setForm, formStatus, setFormStatus,
     return (
         <div>
             <div className='contactList'>
-                { contact.map(c => (
+                { contact.filter(c => (c.name.toUpperCase().includes(search.toUpperCase())) || (c.family.toUpperCase().includes(search.toUpperCase()))).map(c => (
                     <div className="contactItem">
                         <div className='contactContainer'>
                             <div className='contactItem_image'>
-                                <img src={c.image} width={'30px'} height={'30px'}/>
+                                <img src={`https://avatars.dicebear.com/api/${c.gender}/:${c.id}.svg`} width={'30px'} height={'30px'}/>
                             </div>
                             <div className='contactItem_title' onClick={() => showDetails(c.id)}>
                                 <h4>{c.name} {c.family}</h4>

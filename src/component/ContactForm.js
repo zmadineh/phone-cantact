@@ -15,7 +15,7 @@ const ContactForm =  ({contact, setContact, form, setForm, formStatus, setFormSt
     const handleSubmit = e => {
         e.preventDefault()
         if (formStatus === 'Add'){
-            if (form.name == '' || form.family == '' || form.email == '')
+            if (form.name == '' || form.family == '' || form.email == '' || form.number == '')
                 alert('Enter inputs')
             else {
                 setContact([...contact, {
@@ -26,6 +26,7 @@ const ContactForm =  ({contact, setContact, form, setForm, formStatus, setFormSt
                     gender: form.gender,
                     country: form.country,
                     city: form.city,
+                    number: form.number,
                     email: form.email,
                     favourite: form.favourite,
                     image: form.image,
@@ -45,7 +46,7 @@ const ContactForm =  ({contact, setContact, form, setForm, formStatus, setFormSt
 
             <form onSubmit={handleSubmit}>
                 <div className='contactForm'>
-                    <img src={'../../public/logo512.png'} width={'30px'} height={'30px'}/>
+                    <img src={`https://avatars.dicebear.com/api/${form.gender || 'male'}/${lastId+1}.svg`} width={'30px'} height={'30px'}/>
                     <h4>First name</h4>
                     <input className='formName_input' onChange={handleChange} name={'name'} value={form.name} style={{marginRight: '20px'}}/>
                     <h4>Last name</h4>
@@ -58,6 +59,8 @@ const ContactForm =  ({contact, setContact, form, setForm, formStatus, setFormSt
                     <input className='formCountry_input' onChange={handleChange} name={'country'} value={form.country} style={{marginRight: '20px'}}/>
                     <h4>City</h4>
                     <input className='formCity_input' onChange={handleChange} name={'city'} value={form.city} style={{marginRight: '20px'}}/>
+                    <h4>Number</h4>
+                    <input className='formNumber_input' onChange={handleChange} name={'number'} value={form.number} style={{marginRight: '20px'}}/>
                     <h4>Email</h4>
                     <input className='formEmail_input' onChange={handleChange} name={'email'} value={form.email} style={{marginRight: '20px'}}/>
                     <div>
