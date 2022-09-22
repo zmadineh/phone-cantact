@@ -23,14 +23,11 @@ function App() {
   return (
     <div className='center'>
         <div className='main'>
-            <div className='header'>
-                <h1 style={{margin: '20px'}}>Contacts</h1>
-            </div>
 
-            <ContactList contact={contact} setContact={setContact} form={form} setForm={setForm} formStatus={formStatus} setFormStatus={setFormStatus} lastId={lastId} setLastId={setLastId} contactEnable={contactEnable} setContactEnable={setContactEnable}/>
-            <ContactForm contact={contact} setContact={setContact} form={form} setForm={setForm} formStatus={formStatus} setFormStatus={setFormStatus} lastId={lastId} setLastId={setLastId} contactEnable={contactEnable} setContactEnable={setContactEnable}/>
+            <ContactList contact={contact} setContact={setContact} setForm={setForm} setFormStatus={setFormStatus}/>
+            <ContactForm contact={contact} setContact={setContact} form={form} setForm={setForm} formStatus={formStatus} setFormStatus={setFormStatus} lastId={lastId} setLastId={setLastId}/>
 
-            <ContactInfo contact={contact} setContact={setContact} form={form} formStatus={formStatus} lastId={lastId}/>
+            {/*<ContactInfo contact={contact} setContact={setContact} form={form} formStatus={formStatus} lastId={lastId}/>*/}
 
         </div>
     </div>
