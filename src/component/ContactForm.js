@@ -42,7 +42,7 @@ const ContactForm =  ({contact, setContact, form, setForm, formStatus, setFormSt
         else {
             setContact(contact.map(c => c.id === form.id ? form: c))
         }
-        setForm({name: '', family: '', age: '', gender: '', country: '', city: '', number:'', email: '', image: '`https://avatars.dicebear.com/api/${form.gender || \'male\'}/${lastId+1}.svg`', favourite: false})
+        setForm({name: '', family: '', age: '', gender: '', country: '', city: '', number:'', email: '', image: `https://avatars.dicebear.com/api/${form.gender || 'male'}/${lastId+1}.svg`, favourite: false})
         setFormStatus('Add')
     }
 
@@ -52,7 +52,7 @@ const ContactForm =  ({contact, setContact, form, setForm, formStatus, setFormSt
             <form onSubmit={handleSubmit}>
                 <div className='contactForm'>
                     <div className={'form_img'}>
-                        <img src={form.image}/>
+                        <img src={form.image ? form.image : `https://avatars.dicebear.com/api/${form.gender || 'male'}/${lastId+1}.svg`}/>
 
                         {form.favourite ? <FaHeart className={'formFav_icon'} style={{color: 'red'}} name={'favourite'} onClick={handleFavChange } /> :
                             <FaRegHeart className={'formFav_icon'} style={{color: '#a1a1a1'}} name={'favourite'} onClick={handleFavChange}/> }

@@ -13,9 +13,9 @@ function App() {
     {id: 3, name: 'ali', family: 'madineh', age: '25', gender: 'male', country: 'iran', city: 'isfahan', number:'091111111', email:'zmadineh@gmail.com', image: `https://avatars.dicebear.com/api/male/3.svg`, favourite: false, enable: false},
   ])
 
-  const [form, setForm] = useState( {name: '', family: '', age: '', gender: '', country: '', city: '', number:'', email: '', image: '../../public/logo512.png', favourite: false})
-  const [formStatus, setFormStatus] = useState('Add')
   const [lastId, setLastId] = useState(contact[contact.length-1].id)
+  const [form, setForm] = useState( {name: '', family: '', age: '', gender: '', country: '', city: '', number:'', email: '', image: '', favourite: false})
+  const [formStatus, setFormStatus] = useState('Add')
   const [contactEnable, setContactEnable] = useState(false)
 
 
