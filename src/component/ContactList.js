@@ -27,6 +27,7 @@ const ContactList = ({contact, setContact, setForm, setFormStatus}) => {
 
     const handleDelete = () => {
         setContact(contact.filter(c => c.id !== delId))
+        handleNoDel()
     }
 
     const handleDelMessage = id => {
