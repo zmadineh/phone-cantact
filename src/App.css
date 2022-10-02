@@ -6,6 +6,7 @@
 .center {
     display: flex;
     justify-content: center;
+    height: 200vh;
 }
 
 .main {
@@ -15,6 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 /* start toolbar styles */
 .toolbar {
@@ -88,12 +90,13 @@
     border-radius: 3px;
     box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
     margin: 20px 20px;
-    padding: 15px 20px;
+    padding: 20px 20px;
     background-color: #fff;
 }
 
 .contactContainer {
     display: flex;
+    height: 30px;
 }
 
 .contactItem_image {
@@ -109,8 +112,9 @@
 .contactItem_title {
     flex: 70%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .contactItem_favourite {
@@ -152,24 +156,22 @@ form {
     font-size: 16px;
     color: #696969;
 }
-
 .form_img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    padding: 10px;
-    border: 2px solid #dad9d9;
-    border-radius: 50%;
-    width: 90px;
-    height: 90px;
-    background: #fff;
     margin: 30px 0;
 }
 
 .form_img img {
-    width: 50px;
-    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+    /*border: 2px solid #dad9d9;*/
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    background: #fff;
 }
 
 .formFav_icon {
@@ -178,8 +180,8 @@ form {
     width: 20px;
     height: 20px;
     position: absolute;
-    bottom: -7px;
-    right: 20px;
+    bottom: -2px;
+    right: 30px;
 }
 
 .formInput-container {
@@ -214,6 +216,7 @@ form {
 .btn {
     outline: none;
     border: none;
+    cursor: pointer;
     border-bottom: 1px solid #a1a1a1;
     border-radius: 10px;
     height: 30px;
@@ -227,6 +230,15 @@ form {
     width: 100%;
     max-width: 100px;
 }
+
+.close_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #a1a1a1;
+    border-radius: 50%;
+}
 /* end form styles */
 
 @media only screen and (min-width: 527px) {
@@ -234,7 +246,7 @@ form {
         width: 100%;
     }
     .contactList {
-        max-width: 500px;
+        /*max-width: 500px;*/
     }
     .contactForm {
         max-width: 500px;
@@ -245,7 +257,12 @@ form {
         width: 100%;
     }
     .contactList {
-        max-width: 600px;
+        width: 70%;
+        /*max-width: 600px;*/
+    }
+
+    .contactContainer {
+        height: 50px;
     }
     .contactForm {
         max-width: 600px;
