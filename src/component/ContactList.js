@@ -1,6 +1,6 @@
 import '../App.css';
 import { useState } from "react";
-import Message from "./Message";
+import DelMessage from "./DelMessage";
 import ContactRow from "./ContactRow";
 
 
@@ -35,7 +35,7 @@ const ContactList = ({contact, setContact, search, searchFavEnable}) => {
     return (
         <div style={{width: '100%', display: 'flex', flexDirection: "column", alignItems: 'center'}}>
 
-            <Message handleDelete={handleDelete} handleNoDel={handleNoDel} showDelMessage={showDelMessage} />
+            <DelMessage handleDelete={handleDelete} handleNoDel={handleNoDel} showDelMessage={showDelMessage} />
 
             <div className={'contactList'}>
                 { contact.filter(contactItem => ((contactItem.name.toUpperCase().includes(search.toUpperCase())) || (contactItem.family.toUpperCase().includes(search.toUpperCase()))) &&

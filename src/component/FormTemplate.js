@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {FaHeart, FaRegHeart} from "react-icons/fa";
 import FormInput from './FormInput.js';
 import {formInputsName} from '../data/formInputsName';
+import SuccessMessage from './SuccessMessage';
 
 
 const FormTemplate =  ({contact, setContact, formStatus}) => {
@@ -12,6 +13,7 @@ const FormTemplate =  ({contact, setContact, formStatus}) => {
 
     const [lastId, setLastId] = useState(contact[contact.length-1].id)
     const [form, setForm] = useState( {id:lastId+1, name: '', family: '', age: '', gender: 'female', country: '', city: '', number:'', email: '', image: '', favourite: false})
+    const [showSuccessMessage, setShowSuccessMessage] = useState('none')
 
     useEffect(() => {
         if (formStatus === 'Update'|| formStatus === 'Show')
@@ -19,10 +21,12 @@ const FormTemplate =  ({contact, setContact, formStatus}) => {
     }, [])
 
     const handleChange = e => {
+        setShowSuccessMessage('none')
         setForm({...form, [e.target.name]: e.target.value})
     }
 
     const handleFavChange = () => {
+        setShowSuccessMessage('none')
         setForm({...form, ['favourite']: !form.favourite})
     }
 
@@ -47,16 +51,22 @@ const FormTemplate =  ({contact, setContact, formStatus}) => {
                     image: form.image,
                 }])
                 setLastId(lastId + 1)
+                setShowSuccessMessage('flex')
             }
         }
         else {
             setContact(contact.map(c => c.id === form.id ? form : c))
+            setShowSuccessMessage('flex')
         }
     }
 
     return (
         <div className={'center'}>
             <div className={'main'}>
+
+                <div style={{marginTop: '30px'}}>
+                    <SuccessMessage showSuccessMessage={showSuccessMessage} text={formStatus} />
+                </div>
                 <form onSubmit={handleSubmit}>
                     <div className='contactForm'>
                         <div className={'form_img'}>
