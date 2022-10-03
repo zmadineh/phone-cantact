@@ -18,6 +18,16 @@
     align-items: center;
     height: 100%;
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0  ;
+}
+
+
 /* start toolbar styles */
 .toolbar {
     position: sticky;
@@ -81,6 +91,7 @@
 /* start contact list styles */
 .contactList {
     width: 100%;
+    z-index: 100;
 }
 
 .contactItem {
@@ -96,17 +107,22 @@
 
 .contactContainer {
     display: flex;
-    height: 30px;
+    height: 50px;
 }
 
 .contactItem_image {
+    display: flex;
     flex: 10%;
+    justify-content: center;
+    align-items: center;
     margin-right: 20px;
 }
 
 .contactItem_image img{
     border: 1px solid #D8D8D8;
     border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 .contactItem_title {
@@ -125,6 +141,10 @@
     margin-left: 20px;
 }
 
+.rowHeart_icon {
+    cursor: pointer;
+}
+
 .wrapper {
     height: 1px;
     overflow: hidden;
@@ -135,7 +155,12 @@
 .iconContainer {
     margin-top: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
+}
+
+.detail_icon {
+    cursor: pointer;
 }
 /* end contact list styles */
 
@@ -245,9 +270,37 @@ form {
     .main {
         width: 100%;
     }
+
     .contactList {
-        /*max-width: 500px;*/
+        width: 90%;
     }
+
+    .contactContainer {
+        height: 80px;
+    }
+
+    contactItem_image {
+        flex: 20%;
+    }
+
+    .contactItem_image img{
+        width: 70px;
+        height: 70px;
+    }
+
+    .contactItem_title {
+        flex: 60%;
+    }
+
+    .rowHeart_icon {
+        width: 23px;
+        height: 23px;
+    }
+
+    .iconContainer {
+        gap: 30px
+    }
+
     .contactForm {
         max-width: 500px;
     }
@@ -258,14 +311,19 @@ form {
     }
     .contactList {
         width: 70%;
-        /*max-width: 600px;*/
     }
 
     .contactContainer {
-        height: 50px;
+        height: 100px;
     }
+
     .contactForm {
         max-width: 600px;
+    }
+
+    .detail_icon {
+        width: 18px;
+        height: 18px;
     }
 }
 
