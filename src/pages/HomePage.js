@@ -2,6 +2,7 @@ import '../App.css';
 import React, {useEffect , useState } from "react";
 import ContactList from "../component/ContactList";
 import Toolbar from "../component/Toolbar";
+import Sidebar from "../component/sidebar/Sidebar";
 
 const HomePage = ({contact, setContact}) => {
 
@@ -30,7 +31,7 @@ const HomePage = ({contact, setContact}) => {
             <div className={'overlay'} onClick={disableWrapper}></div>
             <div className='main'>
 
-                <Toolbar contactFilter={contactFilter}
+                <Toolbar filter={contactFilter}
                          favouriteFilter={favouriteFilter}
                          searchFavEnable={searchFavEnable}
                          setForm={setForm}
@@ -49,6 +50,8 @@ const HomePage = ({contact, setContact}) => {
                              search={search}
                              searchFavEnable={searchFavEnable}
                              setShowForm={setShowForm}/>
+
+                {/*<Sidebar />*/}
 
             </div>
         </div>

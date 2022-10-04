@@ -11,8 +11,8 @@ const Toolbar = ({contactFilter, searchFavEnable, favouriteFilter, setForm, setF
     }
     return (
         <div className='toolbar'>
-            <SearchBox contactFilter={contactFilter} />
-            <h2 style={{fontSize:'25px', color: '#a1a1a1', margin: '0 10px'}}>Contacts</h2>
+            <div style={{width: '30%'}}> <SearchBox filter={contactFilter} /> </div>
+            <h2 style={{fontSize:'25px', color: '#a1a1a1', margin: '0 10px', width: '30%', textAlign: 'center'}}>Contacts</h2>
             <div className={'toolbarIcon-container'}>
                 {searchFavEnable ? <FaHeart className={'toolbarFav_icon'} style={{color: 'red', cursor: "pointer"}} onClick={favouriteFilter} /> :
                     <FaRegHeart className={'toolbarFav_icon'} style={{color: '#a1a1a1', cursor: "pointer"}} onClick={favouriteFilter}/> }
