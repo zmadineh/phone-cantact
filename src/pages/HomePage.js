@@ -31,7 +31,7 @@ const HomePage = ({contact, setContact}) => {
             <div className={'overlay'} onClick={disableWrapper}></div>
             <div className='main'>
 
-                <Toolbar filter={contactFilter}
+                <Toolbar contactFilter={contactFilter}
                          favouriteFilter={favouriteFilter}
                          searchFavEnable={searchFavEnable}
                          setForm={setForm}
