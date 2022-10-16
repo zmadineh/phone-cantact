@@ -1,10 +1,10 @@
 import FormTemplate from "../component/FormTemplate";
 
-const ContactPage = ({contact, setContact, formStatus}) => {
+const ContactPage = () => {
 
     return (
         <div>
-            <FormTemplate contact={contact} setContact={setContact} formStatus={formStatus}/>
+            <FormTemplate />
         </div>
     )
 }
