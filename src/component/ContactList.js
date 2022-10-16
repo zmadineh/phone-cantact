@@ -2,15 +2,21 @@ import '../App.css';
 import { useState } from "react";
 import DelMessage from "./DelMessage";
 import ContactRow from "./ContactRow";
+import {useDispatch} from "react-redux";
+import {removeContact} from "../toolkit/slices/contact.slice";
+import {useSelector} from "react-redux";
 
 
-const ContactList = ({contact, setContact, search, searchFavEnable}) => {
+const ContactList = ({search, searchFavEnable}) => {
 
-    const [showDelMessage, setsShowDelMessage] = useState('none')
-    const [delId, setDelId] = useState(0)
+    const [showDelMessage, setsShowDelMessage] = useState('none');
+    const [delId, setDelId] = useState(0);
+
+    const contact = useSelector((state) => state.contact.contacts);
+    const dispatch = useDispatch();
 
     const handleDelete = () => {
-        setContact(contact.filter(c => c.id !== delId))
+        dispatch(removeContact(contact.filter(c => c.id === delId)[0]));
         handleNoDel()
     }
 
@@ -24,14 +30,6 @@ const ContactList = ({contact, setContact, search, searchFavEnable}) => {
         setDelId(0)
     }
 
-    const handleFavourite = id => {
-        setContact(contact.map(c => c.id === id ? {...c, favourite: !c.favourite} : c))
-    }
-
-    const showDetails = id => {
-        setContact(contact.map(c => c.id === id ? {...c, enable: true} : {...c, enable: false}))
-    }
-
     return (
         <div style={{width: '100%', display: 'flex', flexDirection: "column", alignItems: 'center'}}>
 
@@ -40,7 +38,7 @@ const ContactList = ({contact, setContact, search, searchFavEnable}) => {
             <div className={'contactList'}>
                 { contact.filter(contactItem => ((contactItem.name.toUpperCase().includes(search.toUpperCase())) || (contactItem.family.toUpperCase().includes(search.toUpperCase()))) &&
                     (searchFavEnable ? contactItem.favourite : true)).map(contactItem => (
-                        <ContactRow contactItem={contactItem} handleFavourite={handleFavourite} showDetails={showDetails} handleDelMessage={handleDelMessage}/>
+                        <ContactRow key={contactItem.id} id={contactItem.id} handleDelMessage={handleDelMessage}/>
                 ))}
             </div>
         </div>

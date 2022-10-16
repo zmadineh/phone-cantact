@@ -3,10 +3,11 @@ import logger from "redux-logger";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
-import {contactSlice} from "./slices/contact.slice";
+import contactSlice from "./slices/contact.slice";
+
 
 const persistConfig = {
-    key: "myApp",
+    key: "root",
     storage,
 };
 const rootReducer = combineReducers({
@@ -16,10 +17,13 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
+    // reducer: {
+    //     contact: contactSlice,
+    // }
     reducer: persistedReducer,
-    //middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 export const persistor = persistStore(store);
-
 export default store;
+

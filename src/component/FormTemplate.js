@@ -5,11 +5,19 @@ import {FaHeart, FaRegHeart} from "react-icons/fa";
 import FormInput from './FormInput.js';
 import {formInputsName} from '../data/formInputsName';
 import SuccessMessage from './SuccessMessage';
+import {useDispatch} from "react-redux";
+import {addContact} from "../toolkit/slices/contact.slice";
+import {updateContact} from "../toolkit/slices/contact.slice";
+import {useSelector} from "react-redux";
 
 
-const FormTemplate =  ({contact, setContact, formStatus}) => {
+const FormTemplate =  () => {
 
     const {id} = useParams();
+    const {formStatus} = useParams();
+
+    const contact = useSelector((state) => state.contact.contacts);
+    const dispatch = useDispatch();
 
     const [lastId, setLastId] = useState(contact[contact.length-1].id)
     const [form, setForm] = useState( {id:lastId+1, name: '', family: '', age: '', gender: 'female', country: '', city: '', number:'', email: '', image: '', favourite: false})
@@ -37,25 +45,14 @@ const FormTemplate =  ({contact, setContact, formStatus}) => {
             if (form.name === '' || form.family === '' || form.email === '' || form.number === '')
                 alert('Enter inputs')
             else {
-                setContact([...contact, {
-                    id: lastId + 1,
-                    name: form.name,
-                    family: form.family,
-                    age: form.age,
-                    gender: form.gender,
-                    country: form.country,
-                    city: form.city,
-                    number: form.number,
-                    email: form.email,
-                    favourite: form.favourite,
-                    image: form.image,
-                }])
+                const newContact = {form, id:lastId+1};
+                dispatch(addContact(newContact))
                 setLastId(lastId + 1)
                 setShowSuccessMessage('flex')
             }
         }
         else {
-            setContact(contact.map(c => c.id === form.id ? form : c))
+            dispatch(updateContact(form))
             setShowSuccessMessage('flex')
         }
     }
