@@ -3,7 +3,7 @@ import {contacts} from "../../data/contacts";
 
 export const contactSlice = createSlice({
     name: "contact",
-    initialState: [],//{ contacts },
+    initialState: {contacts} ,
     reducers: {
         addContact: (state, action) => {
             const payload = action.payload;

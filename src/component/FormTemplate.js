@@ -6,9 +6,9 @@ import FormInput from './FormInput.js';
 import {formInputsName} from '../data/formInputsName';
 import SuccessMessage from './SuccessMessage';
 import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import {addContact, removeContact} from "../toolkit/slices/contact.slice";
 import {updateContact} from "../toolkit/slices/contact.slice";
-import {useSelector} from "react-redux";
 
 
 const FormTemplate =  () => {
@@ -26,8 +26,8 @@ const FormTemplate =  () => {
     useEffect(() => {
         if (formStatus === 'Update'|| formStatus === 'Show')
             setForm(contact.filter(item => item.id === Number(id))[0])
-        // if (formStatus === 'Remove')
-        //     dispatch(removeContact(contact.filter(item => item.id === Number(id))[0]))
+        if (formStatus === 'Remove')
+            dispatch(removeContact(contact.filter(item => item.id === Number(id))[0]))
     }, [])
 
     const handleChange = e => {
