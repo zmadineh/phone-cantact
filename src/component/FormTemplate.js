@@ -6,7 +6,7 @@ import FormInput from './FormInput.js';
 import {formInputsName} from '../data/formInputsName';
 import SuccessMessage from './SuccessMessage';
 import {useDispatch} from "react-redux";
-import {addContact} from "../toolkit/slices/contact.slice";
+import {addContact, removeContact} from "../toolkit/slices/contact.slice";
 import {updateContact} from "../toolkit/slices/contact.slice";
 import {useSelector} from "react-redux";
 
@@ -26,6 +26,8 @@ const FormTemplate =  () => {
     useEffect(() => {
         if (formStatus === 'Update'|| formStatus === 'Show')
             setForm(contact.filter(item => item.id === Number(id))[0])
+        // if (formStatus === 'Remove')
+        //     dispatch(removeContact(contact.filter(item => item.id === Number(id))[0]))
     }, [])
 
     const handleChange = e => {
@@ -45,7 +47,21 @@ const FormTemplate =  () => {
             if (form.name === '' || form.family === '' || form.email === '' || form.number === '')
                 alert('Enter inputs')
             else {
-                const newContact = {form, id:lastId+1};
+                const newContact = {
+                    id: lastId+1,
+                    name: form.name,
+                    family: form.family,
+                    age: form.age,
+                    gender: form.gender,
+                    country: form.country,
+                    city: form.city,
+                    number: form.number,
+                    email: form.email,
+                    image: form.image,
+                    favourite: form.favourite,
+                    enable: false,
+                };
+                console.log(newContact)
                 dispatch(addContact(newContact))
                 setLastId(lastId + 1)
                 setShowSuccessMessage('flex')
@@ -74,7 +90,7 @@ const FormTemplate =  () => {
 
                         <div className={'formInput-container'}>
                             {formInputsName.map(input => (
-                                <FormInput input={input} handleChange={handleChange} form={form} formStatus={formStatus}/>
+                                <FormInput key={input.id} input={input} handleChange={handleChange} form={form} formStatus={formStatus}/>
                             ))}
                         </div>
                     </div>

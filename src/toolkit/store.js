@@ -19,7 +19,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
     // reducer: {
     //     contact: contactSlice,
-    // }
+    // },
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

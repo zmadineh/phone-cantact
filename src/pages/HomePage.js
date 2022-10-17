@@ -16,7 +16,6 @@ const HomePage = () => {
     const [formStatus, setFormStatus] = useState('Add')
     const [searchFavEnable, setSearchFavEnable] = useState(false)
     const [search, setSearch] = useState('')
-    const [showForm, setShowForm] = useState(false)
 
 
     const favouriteFilter = e => {
@@ -41,18 +40,10 @@ const HomePage = () => {
                          searchFavEnable={searchFavEnable}
                          setForm={setForm}
                          setFormStatus={setFormStatus}
-                         lastId={lastId}
-                         setShowForm={setShowForm}/>
+                         lastId={lastId} />
 
-                <ContactList form={form}
-                             setForm={setForm}
-                             formStatus={formStatus}
-                             setFormStatus={setFormStatus}
-                             lastId={lastId}
-                             setLastId={setLastId}
-                             search={search}
-                             searchFavEnable={searchFavEnable}
-                             setShowForm={setShowForm}/>
+                <ContactList search={search}
+                             searchFavEnable={searchFavEnable} />
 
                 {/*<Sidebar />*/}
 

@@ -9,11 +9,11 @@ import {useSelector} from "react-redux";
 
 const ContactList = ({search, searchFavEnable}) => {
 
-    const [showDelMessage, setsShowDelMessage] = useState('none');
-    const [delId, setDelId] = useState(0);
-
     const contact = useSelector((state) => state.contact.contacts);
     const dispatch = useDispatch();
+
+    const [showDelMessage, setsShowDelMessage] = useState('none');
+    const [delId, setDelId] = useState(0);
 
     const handleDelete = () => {
         dispatch(removeContact(contact.filter(c => c.id === delId)[0]));
