@@ -89,7 +89,7 @@ const FormTemplate =  () => {
 
                     <div className='formBtn-container'>
                         <Link to={'/'}><button className={'btn'} type={'button'}>Close</button></Link>
-                        <button className={clsx('btn', (formStatus!=='Show') && 'd-none')} type={'submit'}>
+                        <button className={clsx('btn', (formStatus==='Show') && 'd-none')} type={'submit'}>
                             {formStatus === 'Add' ? 'Add' : 'Update'}
                         </button>
                     </div>
