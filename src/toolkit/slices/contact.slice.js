@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice, current} from "@reduxjs/toolkit";
 import {contacts} from "../../data/contacts";
 
 export const contactSlice = createSlice({
     name: "contact",
-    initialState: {contacts} ,
+    initialState: { contacts } ,
     reducers: {
         addContact: (state, action) => {
             const payload = action.payload;
@@ -12,19 +12,29 @@ export const contactSlice = createSlice({
                 state.contacts.push(payload);
         },
         removeContact: (state, action) => {
-            state.contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
+            return state.contacts.filter(contact => contact.id !== action.payload.id);
         },
         updateContact: (state, action) => {
-            state.contacts = state.contacts.map(contact =>  contact.id === action.payload.id ? action.payload : contact);
+            const payload = action.payload;
+            const index = state.contacts.findIndex(contact => contact.number === payload.number);
+            if (index !== -1)
+                Object.assign(state.contacts[index], payload);
         },
         updateFavfContact: (state, action) => {
-            state.contacts = state.contacts.map(contact =>  contact.id === action.payload.id ? {...contact, favourite : !contact.favourite} : contact);
+            const contact = state.contacts.find((contact) => contact.id === action.payload.id)
+            if (contact)
+                contact.favourite = !contact.favourite;
         },
         expandContact: (state, action) => {
-            state.contacts = state.contacts.map(contact =>  contact.id === action.payload.id ? {...contact, enable : true} : {...contact, enable : false});
+            state.contacts.forEach(contact => {
+                if(contact.id === action.payload.id) contact.enable = true;
+                else contact.enable = false;
+            });
         },
         collapseContact: (state) => {
-            state.contacts = state.contacts.map(contact =>  ({...contact, enable : false}));
+            state.contacts.forEach(contact => {
+                contact.enable = false;
+            });
         }
     },
 });

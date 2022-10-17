@@ -31,7 +31,7 @@ const ContactList = ({search, searchFavEnable}) => {
     }
 
     return (
-        <div style={{width: '100%', display: 'flex', flexDirection: "column", alignItems: 'center'}}>
+        <div className={'contactList_container'}>
 
             <DelMessage handleDelete={handleDelete} handleNoDel={handleNoDel} showDelMessage={showDelMessage} />
 

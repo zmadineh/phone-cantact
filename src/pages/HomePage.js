@@ -5,6 +5,7 @@ import Toolbar from "../component/Toolbar";
 import Sidebar from "../component/sidebar/Sidebar";
 import {useDispatch, useSelector} from "react-redux";
 import {collapseContact} from "../toolkit/slices/contact.slice";
+import {emptyForm} from "../data/emptyForm";
 
 const HomePage = () => {
 
@@ -12,7 +13,7 @@ const HomePage = () => {
     const dispatch = useDispatch();
 
     const [lastId, setLastId] = useState(contact[contact.length-1].id)
-    const [form, setForm] = useState( {id:lastId+1, name: '', family: '', age: '', gender: 'female', country: '', city: '', number:'', email: '', image: '', favourite: false})
+    const [form, setForm] = useState( {id:lastId+1, ...emptyForm})
     const [formStatus, setFormStatus] = useState('Add')
     const [searchFavEnable, setSearchFavEnable] = useState(false)
     const [search, setSearch] = useState('')

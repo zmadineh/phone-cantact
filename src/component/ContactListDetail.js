@@ -3,18 +3,19 @@ import {BsGrid} from "react-icons/bs";
 import {FaRegEdit, FaRegTrashAlt} from "react-icons/fa";
 import '../App.css'
 import {useDispatch, useSelector} from "react-redux";
+import clsx from "clsx";
 
 const ContactListDetail = ({id, handleDelMessage}) => {
     const contact = useSelector((state) => state.contact.contacts);
     const contactItem = contact.filter(c => c.id === id)[0];
 
     return (
-        <div className='wrapper' style={contactItem.enable ? {height: '100%'} : {height: '1px'}}>
-            <span style={{border: '1px solid #D8D8D8', width: '100%', margin: '10px 0'}}></span>
+        <div className={clsx('wrapper', contactItem.enable && 'max_height', !contactItem.enable && 'min_height')}>
+            <span className={'detail_line'}></span>
             <div className='iconContainer'>
-                <Link to={`/Show/${contactItem.id}`} style={{color: '#000'}}><BsGrid className={'detail_icon'}/></Link>
+                <Link to={`/Show/${contactItem.id}`} className={'black_color'} ><BsGrid className={'detail_icon'}/></Link>
                 <FaRegTrashAlt onClick={() => handleDelMessage(contactItem.id)} className={'detail_icon'}/>
-                <Link to={`/Update/${contactItem.id}`} style={{color: '#000'}}><FaRegEdit className={'detail_icon'}/></Link>
+                <Link to={`/Update/${contactItem.id}`} className={'black_color'} ><FaRegEdit className={'detail_icon'}/></Link>
             </div>
         </div>
     )

@@ -9,7 +9,8 @@ import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import {addContact, removeContact} from "../toolkit/slices/contact.slice";
 import {updateContact} from "../toolkit/slices/contact.slice";
-
+import {emptyForm} from "../data/emptyForm";
+import clsx from "clsx";
 
 const FormTemplate =  () => {
 
@@ -20,7 +21,7 @@ const FormTemplate =  () => {
     const dispatch = useDispatch();
 
     const [lastId, setLastId] = useState(contact[contact.length-1].id)
-    const [form, setForm] = useState( {id:lastId+1, name: '', family: '', age: '', gender: 'female', country: '', city: '', number:'', email: '', image: '', favourite: false})
+    const [form, setForm] = useState( {id:lastId+1, ...emptyForm})
     const [showSuccessMessage, setShowSuccessMessage] = useState('none')
 
     useEffect(() => {
@@ -49,16 +50,7 @@ const FormTemplate =  () => {
             else {
                 const newContact = {
                     id: lastId+1,
-                    name: form.name,
-                    family: form.family,
-                    age: form.age,
-                    gender: form.gender,
-                    country: form.country,
-                    city: form.city,
-                    number: form.number,
-                    email: form.email,
-                    image: form.image,
-                    favourite: form.favourite,
+                    ...form,
                     enable: false,
                 };
                 console.log(newContact)
@@ -84,8 +76,8 @@ const FormTemplate =  () => {
                     <div className='contactForm'>
                         <div className={'form_img'}>
                             <img src={`https://avatars.dicebear.com/api/${form.gender}/${form.id}.svg`}/>
-                            {form.favourite ? <FaHeart className={'formFav_icon'} style={{color: 'red'}} name={'favourite'} onClick={formStatus !== 'Show' ? handleFavChange : () => {}} /> :
-                                <FaRegHeart className={'formFav_icon'} style={{color: '#a1a1a1'}} name={'favourite'} onClick={formStatus !== 'Show' ? handleFavChange : () => {}}/> }
+                            {form.favourite ? <FaHeart className={clsx('formFav_icon', 'red_heart')} name={'favourite'} onClick={formStatus !== 'Show' ? handleFavChange : () => {}} /> :
+                                <FaRegHeart className={clsx('formFav_icon', 'gray_heart')} name={'favourite'} onClick={formStatus !== 'Show' ? handleFavChange : () => {}}/> }
                         </div>
 
                         <div className={'formInput-container'}>
@@ -97,7 +89,7 @@ const FormTemplate =  () => {
 
                     <div className='formBtn-container'>
                         <Link to={'/'}><button className={'btn'} type={'button'}>Close</button></Link>
-                        <button className={'btn'} style={ formStatus !== 'Show' ? {} : {display: 'none'}} type={'submit'}>
+                        <button className={clsx('btn', (formStatus!=='Show') && 'd-none')} type={'submit'}>
                             {formStatus === 'Add' ? 'Add' : 'Update'}
                         </button>
                     </div>
