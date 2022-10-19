@@ -12,7 +12,8 @@ const HomePage = () => {
     const contact = useSelector((state) => state.contact.contacts);
     const dispatch = useDispatch();
 
-    const [lastId, setLastId] = useState(contact[contact.length-1].id)
+    const lastID = contact.length !== 0 ? contact[contact.length-1].id : 0;
+    const [lastId, setLastId] = useState(lastID)
     const [form, setForm] = useState( {id:lastId+1, ...emptyForm})
     const [formStatus, setFormStatus] = useState('Add')
     const [searchFavEnable, setSearchFavEnable] = useState(false)

@@ -350,6 +350,20 @@ form {
 }
 /* end form styles */
 
+/* nothing styles :) */
+
+.nothing_img_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.nothing-to-show_image {
+    width: 100%;
+    height: 100%;
+}
+
 @media only screen and (min-width: 527px) {
     .main {
         width: 100%;

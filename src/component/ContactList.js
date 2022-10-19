@@ -5,6 +5,7 @@ import ContactRow from "./ContactRow";
 import {useDispatch} from "react-redux";
 import {removeContact} from "../toolkit/slices/contact.slice";
 import {useSelector} from "react-redux";
+import NothingToShow from "./NothingToShow";
 
 
 const ContactList = ({search, searchFavEnable}) => {
@@ -30,17 +31,25 @@ const ContactList = ({search, searchFavEnable}) => {
         setDelId(0)
     }
 
+    const contactFilter = () => {
+        let contactList = contact.filter(contactItem =>
+            ((contactItem.name.toUpperCase().includes(search.toUpperCase())) || (contactItem.family.toUpperCase().includes(search.toUpperCase())))
+            && (searchFavEnable ? contactItem.favourite : true));
+        return { contactList, length: contactList.length };
+    }
+
     return (
         <div className={'contactList_container'}>
 
             <DelMessage handleDelete={handleDelete} handleNoDel={handleNoDel} showDelMessage={showDelMessage} />
 
             <div className={'contactList'}>
-                { contact.filter(contactItem => ((contactItem.name.toUpperCase().includes(search.toUpperCase())) || (contactItem.family.toUpperCase().includes(search.toUpperCase()))) &&
-                    (searchFavEnable ? contactItem.favourite : true)).map(contactItem => (
+                { contactFilter().contactList.map(contactItem => (
                         <ContactRow key={contactItem.id} id={contactItem.id} handleDelMessage={handleDelMessage}/>
                 ))}
             </div>
+
+            { contactFilter().length === 0 ? <NothingToShow /> : null }
         </div>
     )
 }
