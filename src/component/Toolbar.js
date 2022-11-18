@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {FaHeart, FaRegHeart, FaUserPlus} from "react-icons/fa";
-import SearchBox from "./SearchBox";
+import SearchBox from "./common/SearchBox";
 import {emptyForm} from "../data/emptyForm";
 import clsx from "clsx";
 

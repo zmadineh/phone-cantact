@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {FaHeart, FaRegHeart} from "react-icons/fa";
 import FormInput from './FormInput.js';
 import {formInputsName} from '../data/formInputsName';
-import SuccessMessage from './SuccessMessage';
+import SuccessMessage from './common/SuccessMessage';
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import {addContact, removeContact} from "../toolkit/slices/contact.slice";

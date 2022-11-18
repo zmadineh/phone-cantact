@@ -1,11 +1,11 @@
 import '../App.css';
 import { useState } from "react";
-import DelMessage from "./DelMessage";
+import DelMessage from "./common/DelMessage";
 import ContactRow from "./ContactRow";
 import {useDispatch} from "react-redux";
 import {removeContact} from "../toolkit/slices/contact.slice";
 import {useSelector} from "react-redux";
-import NothingToShow from "./NothingToShow";
+import NothingToShow from "./common/NothingToShow";
 
 
 const ContactList = ({search, searchFavEnable}) => {

@@ -1,4 +1,4 @@
-import MessageContainer from "./MessageContainer";
+import MessageContainer from "../MessageContainer";
 import MessageText from "./MessageText";
 
 const DelMessage = ({showDelMessage, handleNoDel, handleDelete}) => {

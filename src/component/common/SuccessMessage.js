@@ -1,4 +1,4 @@
-import MessageContainer from "./MessageContainer";
+import MessageContainer from "../MessageContainer";
 import MessageText from "./MessageText";
 
 const SuccessMessage = ({showSuccessMessage, text}) => {
