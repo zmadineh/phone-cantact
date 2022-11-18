@@ -13,15 +13,10 @@ import Box from "@mui/material/Box";
 import {DrawerHeader} from "./DrawerHeader";
 import {AppBar} from "../appBar/AppBar";
 import {Drawer} from "../drawer/Drawer";
-import CreateList from "../drawer/CreateList";
-import {drawerContentList} from "../../../data/drawer/drawer-content-list";
+import SpeedDialMenu from "./SpeedDialMenu";
 
 
-const Sidebar = ({children, open, setOpen}) => {
-
-    const filter = () => {
-        console.log('filter')
-    }
+const Sidebar = ({children, open, setOpen, handleAction}) => {
 
     const theme = useTheme();
 
@@ -43,19 +38,21 @@ const Sidebar = ({children, open, setOpen}) => {
                         onClick={handleDrawerOpen}
                         edge="start"
                         sx={{
+                            display: {xs: "none", md: "flex"},
                             marginRight: 5,
                             ...(open && { display: 'none' }),
                         }}
                     >
                         <MenuIcon />
                     </IconButton>
+                    <SpeedDialMenu handleAction={handleAction} />
                     <Typography variant="h4" noWrap component="div" color={"text.main"}>
                         Contacts
                     </Typography>
                 </Toolbar>
             </AppBar>
 
-            <Drawer variant="permanent" open={open}>
+            <Drawer variant="permanent" open={open} sx={{display: {xs: 'none', md: "block"}}}>
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose} color={"secondary"}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -65,9 +62,6 @@ const Sidebar = ({children, open, setOpen}) => {
 
                 {children}
 
-                {/*{drawerContentList.map(list => (*/}
-                {/*    <CreateList key={list.section} list={list.data} />*/}
-                {/*))}*/}
             </Drawer>
         </Grid>
 ) }

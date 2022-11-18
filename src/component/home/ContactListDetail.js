@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {BsGrid} from "react-icons/bs";
 import {FaRegEdit, FaRegTrashAlt} from "react-icons/fa";
-import '../App.css'
+import '../../App.css'
 import {useDispatch, useSelector} from "react-redux";
 import clsx from "clsx";
 
