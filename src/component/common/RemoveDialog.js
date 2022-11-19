@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import {Button} from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-const RemoveDialog = ({open, onClose, selectedValue}) => {
+const RemoveDialog = ({open, onClose}) => {
 
     // const [value, setValue] = useState('false')
 
@@ -13,7 +13,7 @@ const RemoveDialog = ({open, onClose, selectedValue}) => {
     };
 
     const handleClose = () => {
-        onClose(selectedValue);
+        onClose(false);
     };
 
     return (
@@ -21,8 +21,8 @@ const RemoveDialog = ({open, onClose, selectedValue}) => {
             <Grid container p={3} gap={3}>
                 <Typography>Are you sure you want to remove this contact?</Typography>
                 <Grid container gap={2}>
-                    <Button variant={"outlined"} onClick={() => handleButtonClick('true')}>Yes</Button>
-                    <Button  variant={"outlined"} onClick={() => handleButtonClick('false')}>No</Button>
+                    <Button variant={"outlined"} onClick={() => handleButtonClick(true)}>Yes</Button>
+                    <Button  variant={"outlined"} onClick={() => handleButtonClick(false)}>No</Button>
                 </Grid>
             </Grid>
 

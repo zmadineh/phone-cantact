@@ -43,7 +43,7 @@ const ContactCart = ({form, status, setStatus}) => {
     const navigate = useNavigate();
 
     const [open, setOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState("true")
+    // const [selectedValue, setSelectedValue] = useState("true")
 
     const contact = useSelector((state) => state.contact.contacts);
     const dispatch = useDispatch();
@@ -51,7 +51,8 @@ const ContactCart = ({form, status, setStatus}) => {
     const onClose = (value) => {
         console.log(value, Number(form.id), contact.filter(item => item.id === Number(form.id))[0])
         if (value === true){
-            dispatch(removeContact(contact.filter(item => item.id === Number(form.id))[0]))
+            dispatch(removeContact(contact.find(item => item.id === Number(form.id))))
+            console.log(value)
         }
         setOpen(false)
         navigate('/')
@@ -68,7 +69,7 @@ const ContactCart = ({form, status, setStatus}) => {
     return (
         <Grid container item xs={12} component={Paper} flexDirection={"column"} px={3} py={2} spacing={4}>
 
-            <RemoveDialog open={open} selectedValue={selectedValue} onClose={onClose} />
+            <RemoveDialog open={open} onClose={onClose} />
 
             <Grid container item justifyContent={"space-between"}>
                 <Grid item xs={8} display={"flex"} alignItems={"center"} gap={3}>
